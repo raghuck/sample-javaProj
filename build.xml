@@ -13,7 +13,7 @@
 	<!-- compile the source files and generate class files -->
     <target name="compile" depends="clean">
         <mkdir dir="WEB-INF/classes"/>
-	    <javac classpathref="class.path" srcdir="../src" destdir="WEB-INF/classes"/>
+	    <javac classpathref="class.path" srcdir="src" destdir="WEB-INF/classes"/>
     </target>
 	
 	<!-- clean the war and classes directory -->
