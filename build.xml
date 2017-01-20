@@ -39,14 +39,14 @@
 	
 	<!-- deploy the packaged war file into tomcat application server -->
 	<target name="deploy-war" depends="create-war">
-
+<!--
 		<move todir="/usr/share/tomcat8/webapps/backup">
 			<filelist dir="/usr/share/tomcat8/webapps">
 			<file name="rd.war"/>
 			</filelist>
 		</move>
 		<rename src="/usr/share/tomcat8/webapps/backup/rd.war" dest="/usr/share/tomcat8/webapps/backup/rd.war.backup"/>
-  
+  -->
         	<copy todir="/usr/share/tomcat8/webapps" overwrite="true">
 			<fileset dir="war"/>
 		</copy>
