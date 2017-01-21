@@ -1,0 +1,57 @@
+<project>
+	
+	<!-- create our ant classpath using the fileset task -->
+	<path id="class.path">
+
+	<!-- include all jars in the lib directory -->
+	<fileset dir="WEB-INF/lib">
+		<include name="*.jar" />
+	</fileset>
+
+	</path>
+
+	<!-- compile the source files and generate class files -->
+    <target name="compile" depends="clean">
+        <mkdir dir="WEB-INF/classes"/>
+	    <javac classpathref="class.path" srcdir="../src" destdir="WEB-INF/classes"/>
+    </target>
+	
+	<!-- clean the war and classes directory -->
+    <target name="clean">
+        <delete dir="war"/>
+        <delete dir="WEB-INF/classes"/>
+    </target>
+
+	<!-- package the war application file -->
+	<target name="create-war" description="creates a web application archive file" depends="compile">
+
+		<mkdir dir="war"/>
+       <war destfile="war/rd.war" 
+         webxml="WEB-INF/web.xml">
+
+           <classes dir="WEB-INF/classes"/>
+           <lib dir="WEB-INF/lib"/>
+           <fileset dir=".">
+		   <include name="**/*.*"/>
+           </fileset>
+       </war>
+	</target>
+	
+	<!-- deploy the packaged war file into tomcat application server -->
+	<!--
+	<target name="deploy-war" depends="create-war">
+
+		<move todir="/usr/share/tomcat8/webapps/backup">
+			<filelist dir="/usr/share/tomcat8/webapps">
+			<file name="rd.war"/>
+			</filelist>
+		</move>
+		<rename src="/usr/share/tomcat8/webapps/backup/rd.jar" dest="/usr/share/tomcat8/webapps/backup/rd.jar.backup"/>
+  
+        <copy todir="/usr/share/tomcat8/webapps" overwrite="true">
+			<fileset dir="war"/>
+		</copy>
+    </target>
+	-->
+
+</project>
