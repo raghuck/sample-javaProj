@@ -13,7 +13,7 @@
 	<!-- compile the source files and generate class files -->
     <target name="compile" depends="clean">
         <mkdir dir="WEB-INF/classes"/>
-	    <javac classpathref="class.path" srcdir="../src" destdir="WEB-INF/classes"/>
+	    <javac classpathref="class.path" srcdir="src" destdir="WEB-INF/classes"/>
     </target>
 	
 	<!-- clean the war and classes directory -->
@@ -38,20 +38,18 @@
 	</target>
 	
 	<!-- deploy the packaged war file into tomcat application server -->
-	<!--
 	<target name="deploy-war" depends="create-war">
 
 		<move todir="/usr/share/tomcat8/webapps/backup">
-			<filelist dir="/usr/share/tomcat8/webapps">
+		<filelist dir="/usr/share/tomcat8/webapps">
 			<file name="rd.war"/>
-			</filelist>
+		</filelist>
 		</move>
 		<rename src="/usr/share/tomcat8/webapps/backup/rd.jar" dest="/usr/share/tomcat8/webapps/backup/rd.jar.backup"/>
   
-        <copy todir="/usr/share/tomcat8/webapps" overwrite="true">
+		<copy todir="/usr/share/tomcat8/webapps" overwrite="true">
 			<fileset dir="war"/>
 		</copy>
-    </target>
-	-->
+    	</target>
 
 </project>
